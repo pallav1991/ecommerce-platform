@@ -1,0 +1,27 @@
+name: Order Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/order-service/**'
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'corretto'
+
+      - name: Build with Maven
+        working-directory: services/order-service
+        run: mvn clean install
