@@ -19,9 +19,13 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'corretto'
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Build with Maven
+      - name: Build shared lib with Maven
+        working-directory: shared-libraries
+        run: mvn clean install
+
+      - name: Build api-gateway with Maven
         working-directory: services/api-gateway
         run: mvn clean install
