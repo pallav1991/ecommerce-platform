@@ -1,9 +1,9 @@
-name: Notification Service CI/CD
+name: Auth Service CI/CD
 
 on:
   push:
     paths:
-      - 'services/notification-service/**'
+      - 'services/auth-service/**'
     branches:
       - master
       - develop
@@ -22,6 +22,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Build shared lib with Maven
+        working-directory: shared-libraries
+        run: mvn clean install
+
       - name: Build with Maven
-        working-directory: services/notification-service
+        working-directory: services/auth-service
         run: mvn clean install

@@ -11,7 +11,7 @@
 	<groupId>com.ecommerce</groupId>
 	<artifactId>product-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Product Service</name>
+	<name>ecommerce-Product Service</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

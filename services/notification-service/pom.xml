@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>notification-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>ecommerce-notification service</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
