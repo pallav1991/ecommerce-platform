@@ -6,22 +6,23 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
 public class JWTUtil {
 
-    private String secret;
+    private final String secret;
 
     public JWTUtil() {
         SecureRandom random = new SecureRandom();
         byte[] secretBytes = new byte[32];
         random.nextBytes(secretBytes);
         this.secret = Base64.getEncoder().encodeToString(secretBytes);
+    }
+
+    public JWTUtil(String secret) {
+        this.secret = secret;
     }
 
     public String extractUsername(String token) {
@@ -36,12 +37,17 @@ public class JWTUtil {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
+    public Boolean isTokenExpired(String token) {
+        try {
+            final Date expiration = extractExpiration(token);
+            return expiration.before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String generateToken(String username) {
@@ -51,6 +57,18 @@ public class JWTUtil {
 
     public String generateToken(Map<String, Object> claims, String username) {
         if (claims == null) claims = new HashMap<>();
+        return createToken(claims, username);
+    }
+
+    public String generateToken(String username, String role) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", role);
+        return createToken(claims, username);
+    }
+
+    public String generateToken(String username, Set<String> role) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", role);
         return createToken(claims, username);
     }
 
