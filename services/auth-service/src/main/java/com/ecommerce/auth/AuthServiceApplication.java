@@ -20,6 +20,9 @@ public class AuthServiceApplication {
 	@Value("${jwt.secret}")
 	private String jwtSecret;
 
+	@Value("${jwt.expiration}")
+	private String jwtExpiration;
+
 	public static void main(String[] args) {
 		SpringApplication.run(AuthServiceApplication.class, args);
 	}
@@ -28,7 +31,7 @@ public class AuthServiceApplication {
 	@Bean
 	@Primary
 	public JWTUtil jwtUtil() {
-		return new JWTUtil(jwtSecret);
+		return new JWTUtil(jwtSecret, jwtExpiration);
 	}
 
 }

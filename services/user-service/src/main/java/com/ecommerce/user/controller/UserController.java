@@ -1,6 +1,6 @@
 package com.ecommerce.user.controller;
 
-import com.ecommerce.user.entities.User;
+import com.ecommerce.entities.User;
 import com.ecommerce.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,8 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.registerUser(user));
+        com.ecommerce.user.entities.User registeredUser = (com.ecommerce.user.entities.User) user;
+        return ResponseEntity.ok(userService.registerUser(registeredUser));
     }
 
     @GetMapping("/users/{username}")

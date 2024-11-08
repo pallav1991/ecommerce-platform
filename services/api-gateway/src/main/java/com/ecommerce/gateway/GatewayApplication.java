@@ -17,6 +17,9 @@ public class GatewayApplication {
 	@Value("${jwt.secret}")
 	private String jwtSecret;
 
+	@Value("${jwt.expiration}")
+	private String jwtExpiration;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
@@ -24,7 +27,7 @@ public class GatewayApplication {
 	@Bean
 	@Primary
 	public JWTUtil jwtUtil() {
-		return new JWTUtil(jwtSecret);
+		return new JWTUtil(jwtSecret, jwtExpiration);
 	}
 
 }

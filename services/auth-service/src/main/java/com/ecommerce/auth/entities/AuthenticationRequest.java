@@ -1,4 +1,4 @@
-package com.ecommerce.auth;
+package com.ecommerce.auth.entities;
 
 public class AuthenticationRequest {
     private String username;

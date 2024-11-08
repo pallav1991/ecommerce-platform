@@ -5,6 +5,8 @@ import java.util.Set;
 
 public interface User {
 
+    Long getId();
+
     String getUsername();
 
     Set<String> getRoles();
@@ -16,4 +18,8 @@ public interface User {
     void setRoles(Set<String> roles);
 
     void setUsername(String username);
+
+    String getEmail();
+
+    void setEmail(String email);
 }

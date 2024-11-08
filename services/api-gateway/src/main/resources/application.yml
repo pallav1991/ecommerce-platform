@@ -1,13 +1,8 @@
 spring:
   cloud:
     gateway:
-      routes:
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/products/**
-          filters:
-            - RewritePath=/products/(?<segment>.*), /$\{segment}
+      locator:
+        enabled: true
     config:
       uri: http://localhost:8888
       fail-fast: true

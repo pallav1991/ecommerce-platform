@@ -17,7 +17,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<com.ecommerce.entities.User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username).map(user -> (com.ecommerce.entities.User) user);
     }
 }

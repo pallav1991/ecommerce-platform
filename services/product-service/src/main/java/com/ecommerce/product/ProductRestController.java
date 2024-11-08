@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProductRestController {
-    @GetMapping("/")
+    @GetMapping("/products")
     public String welcome(){
         return "Hello";
     }
