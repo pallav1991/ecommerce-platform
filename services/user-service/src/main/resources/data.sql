@@ -5,8 +5,8 @@
 
 -- Insert users into the users table
 INSERT INTO users (id, username, password) VALUES
-(1, 'user1', '$2a$10$UYPkhz5TFK5eOmGMOFyMe.GjH1Un8ddCNMxdIwX/6Fg2D7fbbIV3K'), -- password: userpassword
-(2, 'admin1', '$2a$10$nk1R5A59QKzKzzLf/fF99.qtF3EVUn08N9AoSK2RGNOZWhOxsmDZ6'); -- password: adminpassword
+(1, 'user1', '$2a$10$IwmXKmOqtIzxz05y6bZCyOW4L9El2Oi4BLeGGeIiwrhO.bQ5hMmo6'), -- password: userpassword
+(2, 'admin1', '$2a$10$gxxYzEeNM3/IsINDI.PcJumGB0kTPfZkasz3hvnW8HJ7WBRqf7YYe'); -- password: adminpassword
 
 INSERT INTO roles (id, role_name) VALUES (1, 'USER'), (2, 'ADMIN');
 

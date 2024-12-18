@@ -29,8 +29,19 @@ public class AuthController {
 
     }
 
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateToken(@RequestBody String token) {
+        try {
+            boolean isValid = authService.validateToken(token);
+            return ResponseEntity.ok(isValid);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
+
     @PostMapping(value = "/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody AuthUser request) {
+    public ResponseEntity<Boolean> register(@RequestBody AuthUser request) {
         return ResponseEntity.ok(authService.register(request));
     }
 }

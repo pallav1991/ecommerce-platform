@@ -3,6 +3,27 @@ spring:
     gateway:
       locator:
         enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/users/(?<segment>.*), /api/users/$\{segment}
+            - AuthenticationFilter
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/products/**
+          filters:
+            - RewritePath=/products/(?<segment>.*), /$\{segment}
+            - AuthenticationFilter
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter
     config:
       uri: http://localhost:8888
       fail-fast: true
@@ -11,7 +32,6 @@ spring:
 logging:
   file:
     name: api-gateway.log
-
 management:
   endpoint:
     gateway:
