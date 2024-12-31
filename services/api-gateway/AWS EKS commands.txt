@@ -1,0 +1,19 @@
+AWS EKS commands
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 324037321431.dkr.ecr.us-east-1.amazonaws.com
+
+
+docker build -t ecommerce/api-gateway .
+
+
+
+docker tag ecommerce/api-gateway:latest 324037321431.dkr.ecr.us-east-1.amazonaws.com/ecommerce/api-gateway:latest
+
+
+docker push 324037321431.dkr.ecr.us-east-1.amazonaws.com/ecommerce/api-gateway:latest
+
+
+
+eksctl create cluster --name ecommerce --version 1.29 --nodes=1 --node-type=t2.small --region us-east-1
+
+aws eks --region us-east-1 update-kubeconfig --name ecommerce
