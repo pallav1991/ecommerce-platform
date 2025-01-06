@@ -1,4 +1,4 @@
 FROM openjdk:17
-ADD target/api-gateway-0.0.1-SNAPSHOT.jar api-gateway.jar
+ADD target/product-service-0.0.1-SNAPSHOT.jar product-service.jar
 EXPOSE 8082
-ENTRYPOINT ["java","-jar","api-gateway.jar"]
+ENTRYPOINT ["java","-jar","product-service.jar"]
