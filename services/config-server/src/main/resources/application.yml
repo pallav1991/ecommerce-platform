@@ -4,6 +4,8 @@ server:
 spring:
   cloud:
     config:
+      git:
+        sslVerify: false
       server:
         git:
           uri: https://github.com/pallav1991/config-repository.git  # Use a private repo if possible
