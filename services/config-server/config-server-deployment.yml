@@ -18,3 +18,9 @@ spec:
           image: 192.168.1.170:5000/ecommerce/config-server:latest
           ports:
             - containerPort: 8888
+          env:
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ecommerce-secrets
+                  key: github.token

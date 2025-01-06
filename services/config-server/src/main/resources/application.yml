@@ -9,4 +9,4 @@ spring:
           uri: https://github.com/pallav1991/config-repository.git  # Use a private repo if possible
           default-label: main  # Branch to use for configuration files
           username: pallav1991
-          password: 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
+          password: ${GITHUB_TOKEN}
