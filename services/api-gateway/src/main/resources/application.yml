@@ -25,10 +25,10 @@ spring:
           filters:
             - AuthenticationFilter
     config:
-      uri: http://localhost:8888
+      uri: http://config-server:8888
       fail-fast: true
   config:
-    import: configserver:http://localhost:8888
+    import: configserver:http://config-server:8888
 logging:
   file:
     name: api-gateway.log
