@@ -4,11 +4,10 @@ server:
 spring:
   cloud:
     config:
-      git:
-        sslVerify: false
       server:
         git:
           uri: https://github.com/pallav1991/config-repository.git  # Use a private repo if possible
           default-label: main  # Branch to use for configuration files
           username: pallav1991
           password: ${GITHUB_TOKEN}
+          skip-ssl-validation: true
