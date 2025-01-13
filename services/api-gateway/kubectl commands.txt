@@ -20,3 +20,10 @@ kubectl get all --all-namespaces
 
 
 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
+
+
+docker build -t ecommerce/ecommerce-frontend:latest .
+docker tag ecommerce/ecommerce-frontend:latest 192.168.1.170:5000/ecommerce/ecommerce-frontend:latest
+docker push 192.168.1.170:5000/ecommerce/ecommerce-frontend:latest
+
+
