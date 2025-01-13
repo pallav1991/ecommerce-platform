@@ -18,3 +18,8 @@ spec:
           image: 192.168.1.170:5000/ecommerce/user-service:latest
           ports:
             - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+          envFrom:
+            name: ecommerce-config
