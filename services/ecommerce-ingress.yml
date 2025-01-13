@@ -4,38 +4,33 @@ metadata:
   name: ecommerce-ingress
   namespace: ecommerce
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/proxy-body-size: 10m # Adjust the max upload size
+    kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: frontend.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: ecommerce-frontend
-            port:
-              number: 80
-  - host: api-gateway.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api-gateway
-            port:
-              number: 8080
-  - host: discovery-server.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: service-discovery
-            port:
-              number: 8761
+    - host: service.pallav.ind.in
+      http:
+        paths:
+          # Path for the frontend
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecommerce-frontend-service
+                port:
+                  number: 80
+          # Path for the API Gateway
+          - path: /gateway
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway
+                port:
+                  number: 8080
+          # Path for the Service Discovery
+          - path: /discovery
+            pathType: Prefix
+            backend:
+              service:
+                name: service-discovery
+                port:
+                  number: 8761
