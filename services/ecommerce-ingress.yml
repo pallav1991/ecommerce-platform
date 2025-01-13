@@ -1,19 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: api-gateway-ingress
+  name: ecommerce-ingress
   namespace: ecommerce
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: 192.168.1.170
+    - host: service.pallav.ind.in
       http:
         paths:
-          - path: /
+          - path: /gateway
             pathType: Prefix
             backend:
               service:
                 name: api-gateway
                 port:
                   number: 8080
+
+          - path: /discovery
+            pathType: Prefix
+            backend:
+              service:
+                name: service-discovery
+                port:
+                  number: 8761

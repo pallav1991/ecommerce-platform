@@ -1,5 +1,9 @@
 spring:
   cloud:
+    discovery:
+      client:
+        service-url:
+          defaultZone: http://service-discovery:8761/eureka
     gateway:
       locator:
         enabled: true
@@ -38,3 +42,9 @@ management:
     web:
       exposure:
         include: gateway
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://service-discovery:8761/eureka

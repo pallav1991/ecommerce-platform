@@ -1,0 +1,22 @@
+mvn clean install
+docker build -t ecommerce/config-server:latest .
+docker tag ecommerce/config-server:latest 192.168.1.170:5000/ecommerce/config-server:latest
+docker push 192.168.1.170:5000/ecommerce/config-server:latest
+sudo kubectl apply -f config-server-deployment.yml
+
+sudo kubectl delete deployment/config-server -n ecommerce
+
+sudo kubectl exec -it deployment/config-server -n ecommerce -- /bin/bash
+
+sudo kubectl rollout restart deployment/api-gateway -n ecommerce
+
+
+
+kubectl exec -it api-gateway -n ecommerce -- env
+
+
+kubectl get all --all-namespaces
+
+
+
+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
