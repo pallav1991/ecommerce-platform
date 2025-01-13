@@ -5,23 +5,37 @@ metadata:
   namespace: ecommerce
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m # Adjust the max upload size
 spec:
   rules:
-    - host: service.pallav.ind.in
-      http:
-        paths:
-          - path: /gateway
-            pathType: Prefix
-            backend:
-              service:
-                name: api-gateway
-                port:
-                  number: 8080
-
-          - path: /discovery
-            pathType: Prefix
-            backend:
-              service:
-                name: service-discovery
-                port:
-                  number: 8761
+  - host: frontend.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ecommerce-frontend
+            port:
+              number: 80
+  - host: api-gateway.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api-gateway
+            port:
+              number: 8080
+  - host: discovery-server.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-discovery
+            port:
+              number: 8761
