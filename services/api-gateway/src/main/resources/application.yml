@@ -24,6 +24,9 @@ spring:
             - Path=/auth/**
           filters:
             - AuthenticationFilter
+    config:
+      import-check:
+        enabled: false
 logging:
   file:
     name: api-gateway.log
