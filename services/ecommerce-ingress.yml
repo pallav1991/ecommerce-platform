@@ -7,11 +7,11 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: service.pallav.ind.in
+    - host: frontend.local
       http:
         paths:
           # Path for the frontend
-          - path: /frontend
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -19,6 +19,9 @@ spec:
                 port:
                   number: 80
           # Path for the API Gateway
+    - host: api-gateway.local
+      http:
+        paths:
           - path: /gateway
             pathType: Prefix
             backend:
@@ -27,6 +30,9 @@ spec:
                 port:
                   number: 8080
           # Path for the Service Discovery
+    - host: discovery-server.local
+      http:
+        paths:
           - path: /discovery
             pathType: Prefix
             backend:
