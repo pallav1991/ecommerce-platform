@@ -21,6 +21,16 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: ecommerce-config
+                  key: JWT_SECRET_KEY
+            - name: JWT_EXPIRATION
+              valueFrom:
+                configMapKeyRef:
+                  name: ecommerce-config
+                  key: JWT_EXPIRATION
             - name: SPRING_CLOUD_DISCOVERY_CLIENT_SERVICE-URL_DEFAULTZONE
               value: "http://service-discovery:8761/eureka"
           livenessProbe:

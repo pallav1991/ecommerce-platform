@@ -31,3 +31,5 @@ spec:
                 configMapKeyRef:
                   name: ecommerce-config
                   key: JWT_EXPIRATION
+            - name: SPRING_CLOUD_DISCOVERY_CLIENT_SERVICE-URL_DEFAULTZONE
+              value: "http://service-discovery:8761/eureka"
