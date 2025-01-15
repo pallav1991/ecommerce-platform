@@ -34,6 +34,8 @@ spec:
                   key: JWT_EXPIRATION
             - name: SPRING_CLOUD_DISCOVERY_CLIENT_SERVICE-URL_DEFAULTZONE
               value: "http://service-discovery:8761/eureka"
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: "/gateway"
           resources:
             requests:
               memory: "512Mi"
