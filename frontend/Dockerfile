@@ -3,12 +3,12 @@ FROM node:18 AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY . ./
 RUN npm run build --prod
 
 # Step 2: Serve the Angular app using NGINX
 FROM nginx:stable
-COPY --from=build /app/dist/ecommerce-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/ecommerce-frontend/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose the default NGINX port
