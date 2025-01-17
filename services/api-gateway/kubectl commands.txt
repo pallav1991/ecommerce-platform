@@ -1,12 +1,13 @@
 mvn clean install
-docker build -t ecommerce/config-server:latest .
-docker tag ecommerce/config-server:latest 192.168.1.170:5000/ecommerce/config-server:latest
-docker push 192.168.1.170:5000/ecommerce/config-server:latest
-sudo kubectl apply -f config-server-deployment.yml
+docker build -t ecommerce/product-service:latest .
+docker tag ecommerce/product-service:latest 192.168.1.170:5000/ecommerce/product-service:latest
+docker push 192.168.1.170:5000/ecommerce/product-service:latest
 
-sudo kubectl delete deployment/config-server -n ecommerce
+sudo kubectl delete deployment/product-service -n ecommerce
 
-sudo kubectl exec -it deployment/config-server -n ecommerce -- /bin/bash
+sudo kubectl apply -f product-service-deployment.yml
+
+sudo kubectl exec -it deployment/product-service -n ecommerce -- /bin/bash
 
 sudo kubectl rollout restart deployment/api-gateway -n ecommerce
 
