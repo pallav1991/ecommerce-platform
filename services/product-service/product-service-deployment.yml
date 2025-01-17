@@ -13,6 +13,8 @@ spec:
       labels:
         app: product-service
     spec:
+      restartPolicy: Always
+      serviceAccountName: product-service-sa
       containers:
         - name: product-service
           image: 192.168.1.170:5000/ecommerce/product-service:latest

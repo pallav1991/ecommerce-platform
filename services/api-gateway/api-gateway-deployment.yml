@@ -14,6 +14,7 @@ spec:
         app: api-gateway
     spec:
       restartPolicy: Always
+      serviceAccountName: api-gateway-sa
       containers:
         - name: api-gateway
           image: 192.168.1.170:5000/ecommerce/api-gateway:latest
