@@ -55,7 +55,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     private boolean isTokenValid(String token) {
 
         RestTemplate restTemplate = new RestTemplate();
-        String authServiceUrl = "http://auth-service/auth/validate"; // Replace with your auth service URL
+        String authServiceUrl = "http://auth-service.ecommerce.svc.cluster.local:8090/auth/validate"; // Replace with your auth service URL
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_PLAIN);
