@@ -7,3 +7,9 @@ spring:
 jwt:
   secret: ${JWT_SECRET_KEY}
   expiration: ${JWT_EXPIRATION}
+
+
+urls:
+  user-service: http://user-service.ecommerce.svc.cluster.local:8081
+  product-service: http://product-service.ecommerce.svc.cluster.local:8082
+  auth-service: http://auth-service.ecommerce.svc.cluster.local:8090

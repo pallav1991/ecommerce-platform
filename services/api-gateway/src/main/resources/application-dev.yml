@@ -16,3 +16,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+urls:
+  user-service: http://localhost:8081
+  product-service: http://localhost:8082
+  auth-service: http://localhost:8083
