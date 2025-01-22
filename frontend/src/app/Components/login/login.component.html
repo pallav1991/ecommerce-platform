@@ -1,11 +1,15 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
     <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" [(ngModel)]="credentials.username" name="username" required>
+        <input type="text" id="username" formControlName="username" name="username" required>
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="credentials.password" name="password" required>
+        <input type="password" id="password" formControlName="password" name="password" required>
     </div>
     <button type="submit">Login</button>
 </form>
+
+<div>
+    {{ loginForm.value | json }}
+</div>

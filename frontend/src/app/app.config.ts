@@ -1,20 +1,21 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideStore } from '@ngrx/store';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
-import { provideState, provideStore } from '@ngrx/store';
-import { FEATURE_NAME } from './state/counter/counter.selector';
-import { counterReducer } from './state/counter/counter.reducer';
+import { authInterceptor } from './services/auth/authInteceptor/auth-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
-    provideClientHydration(), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideClientHydration(),
     provideStore(),
-    provideState(
-      {name: FEATURE_NAME, reducer: counterReducer}
-    )
+    provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
+    importProvidersFrom(BrowserModule, FormsModule, ReactiveFormsModule), // Add this line
   ]
 };
