@@ -5,19 +5,23 @@ export class TokenModel {
     constructor(authToken: string, refreshToken: string) {
 
         if (authToken) {
-            localStorage.setItem('accessToken', authToken);
+            if (typeof window !== 'undefined' && localStorage)
+                localStorage.setItem('accessToken', authToken);
             this.authToken = authToken;
         }
-        else if (localStorage.getItem('accessToken')) {
-            this.authToken = localStorage.getItem('accessToken') || '';
+        else if (typeof window !== 'undefined' && localStorage && localStorage.getItem('accessToken')) {
+            if (typeof window !== 'undefined' && localStorage)
+                this.authToken = localStorage.getItem('accessToken') || '';
         }
 
         if (refreshToken) {
-            localStorage.setItem('refreshToken', refreshToken);
+            if (typeof window !== 'undefined' && localStorage)
+                localStorage.setItem('refreshToken', refreshToken);
             this.refreshToken = refreshToken;
         }
-        else if (localStorage.getItem('refreshToken')) {
-            this.refreshToken = localStorage.getItem('refreshToken') || '';
+        else if (typeof window !== 'undefined' && localStorage && localStorage.getItem('refreshToken')) {
+            if (typeof window !== 'undefined' && localStorage)
+                this.refreshToken = localStorage.getItem('refreshToken') || '';
         }
     }
 
@@ -25,8 +29,10 @@ export class TokenModel {
         this.authToken = authToken;
         this.refreshToken = refreshToken;
 
-        localStorage.setItem('accessToken', authToken);
-        localStorage.setItem('refreshToken', refreshToken);
+        if (typeof window !== 'undefined' && localStorage) {
+            localStorage.setItem('accessToken', authToken);
+            localStorage.setItem('refreshToken', refreshToken);
+        }
     }
 
     getToken() {
@@ -36,7 +42,9 @@ export class TokenModel {
     removeToken() {
         this.authToken = '';
         this.refreshToken = '';
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        if (typeof window !== 'undefined' && localStorage) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+        }
     }
 }
