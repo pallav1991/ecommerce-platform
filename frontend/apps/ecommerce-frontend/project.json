@@ -72,7 +72,7 @@
         }
       },
       "options": {
-        "proxyConfig": "src/proxy.conf.js"
+        "proxyConfig": "apps/ecommerce-frontend/src/proxy.conf.js"
       },
       "defaultConfiguration": "development"
     },
